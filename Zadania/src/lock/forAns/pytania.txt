@@ -1,0 +1,6 @@
+1. Jak dochodzi do zagłodzenia na HasWaiters? - związane ze sposobem działania monitora w Javie
+                i sposobem działania HasWaiters.
+2. Jak dochodzi do wiszenia na FirstProducent więcej niż jeden wątek?
+3. Jak dochodzi do zakleszczenia?
+
+do 15:50

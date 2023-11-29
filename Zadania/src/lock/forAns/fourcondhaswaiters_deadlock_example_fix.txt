@@ -1,0 +1,243 @@
+FourConditionHasWaitersStarvation:
+Buffer.capacity = 10;
+
+# Initial State
+LockQ = {C1(1), C2(5), C3(2), P1(5), P2(5), P3(4), P4(4)}
+inBuffer = 10
+FirstProducer = {}
+RestProducers = {}
+FirstConsumer = {}
+RestConsumers = {}
+
+LockQ = {C1(1), C2(5), C3(2), P2(5), P3(4), P4(4)}
+inBuffer = 10 -/> P1(5)
+FirstProducer = {}
+RestProducers = {}
+FirstConsumer = {}
+RestConsumers = {}
+
+LockQ = {C1(1), C2(5), C3(2), P2(5), P3(4), P4(4)}
+inBuffer = 10
+FirstProducer = {P1(5)}
+RestProducers = {}
+FirstConsumer = {}
+RestConsumers = {}
+
+LockQ = {C2(5), C3(2), P2(5), P3(4), P4(4)}
+inBuffer = 9 -> C1(1) - signals FirstProducer
+FirstProducer = {P1(5)}
+RestProducers = {}
+FirstConsumer = {}
+RestConsumers = {}
+
+LockQ = {C1(1), C2(5), C3(2), P3(4), P4(4), P1'(5)}
+inBuffer = 9 -/> P2(5)
+FirstProducer = {}
+RestProducers = {}
+FirstConsumer = {}
+RestConsumers = {}
+
+LockQ = {C1(1), C2(5), C3(2), P3(4), P4(4), P1'(5)}
+inBuffer = 9
+FirstProducer = {P2(5)}
+RestProducers = {}
+FirstConsumer = {}
+RestConsumers = {}
+
+LockQ = {C2(5), C3(2), P3(4), P4(4), P1'(5)}
+inBuffer = 8 -> C1(1) - signals FirstProducer
+FirstProducer = {P2(5)}
+RestProducers = {}
+FirstConsumer = {}
+RestConsumers = {}
+
+LockQ = {C1(1), C2(5), C3(2), P4(4), P1'(5), P2'(5)}
+inBuffer = 8 -/> P3(4)
+FirstProducer = {}
+RestProducers = {}
+FirstConsumer = {}
+RestConsumers = {}
+
+LockQ = {C1(1), C2(5), C3(2), P4(4), P1'(5), P2'(5)}
+inBuffer = 8
+FirstProducer = {P3(4)}
+RestProducers = {}
+FirstConsumer = {}
+RestConsumers = {}
+
+LockQ = {C2(5), C3(2), P4(4), P1'(5), P2'(5)}
+inBuffer = 7 -> C1(1) - signals FirstProducer - changes C1(1) to C1(5)
+FirstProducer = {P3(4)}
+RestProducers = {}
+FirstConsumer = {}
+RestConsumers = {}
+
+LockQ = {C1(5), C2(5), C3(2), P4(4), P1'(5), P2'(5), P3'(4)}
+inBuffer = 7
+FirstProducer = {}
+RestProducers = {}
+FirstConsumer = {}
+RestConsumers = {}
+
+LockQ = {C1(5), C2(5), C3(2)}
+inBuffer = 7 -/> P4(4), P1(5), P2(5), P3(4)
+FirstProducer = {}
+RestProducers = {}
+FirstConsumer = {}
+RestConsumers = {}
+
+LockQ = {C1(5), C2(5), C3(2)}
+inBuffer = 7
+FirstProducer = {P1(5), P2(5), P3(4), P4(4)}
+RestProducers = {}
+FirstConsumer = {}
+RestConsumers = {}
+
+LockQ = {C1(5), C2(5), C3(2)}
+inBuffer = 2 -> C2(5) - signals FirstProducer
+FirstProducer = {P1(5), P2(5), P3(4), P4(4)}
+RestProducers = {}
+FirstConsumer = {}
+RestConsumers = {}
+
+LockQ = {C1(5), C2(5), C3(2), P4'(4)}
+inBuffer = 2
+FirstProducer = {P1(5), P2(5), P3(4)}
+RestProducers = {}
+FirstConsumer = {}
+RestConsumers = {}
+
+LockQ = {C1(5), C2(5), P4'(4)}
+inBuffer = 0 -> C3(2) - signals FirstProducer - changes C3(2) to C3(5)
+FirstProducer = {P1(5), P2(5), P3(4)}
+RestProducers = {}
+FirstConsumer = {}
+RestConsumers = {}
+
+LockQ = {C1(5), C2(5), C3(5), P4'(4), P3'(4)}
+inBuffer = 0
+FirstProducer = {P1(5), P2(5)}
+RestProducers = {}
+FirstConsumer = {}
+RestConsumers = {}
+
+LockQ = {C1(5), C3(5), P4'(4), P3'(4)}
+inBuffer = 0 -/> C2(5)
+FirstProducer = {P1(5), P2(5)}
+RestProducers = {}
+FirstConsumer = {}
+RestConsumers = {}
+
+LockQ = {C3(5), P4'(4), P3'(4)}
+inBuffer = 0 -/> C1(5)
+FirstProducer = {P1(5), P2(5)}
+RestProducers = {}
+FirstConsumer = {C2(5)}
+RestConsumers = {}
+
+LockQ = {C3(5), P4'(4), P3'(4)}
+inBuffer = 0
+FirstProducer = {P1(5), P2(5)}
+RestProducers = {}
+FirstConsumer = {C2(5)}
+RestConsumers = {C1(5)}
+
+LockQ = {C3(5), P4'(4)}
+inBuffer = 4 -> P3'(4) - signals FirstConsumer - changes P3(3) to P3(5)
+FirstProducer = {P1(5), P2(5)}
+RestProducers = {}
+FirstConsumer = {C2(5)}
+RestConsumers = {C1(5)}
+
+LockQ = {C2'(5), P4'(4), P3(5)}
+inBuffer = 4 -/> C3(5)
+FirstProducer = {P1(5), P2(5)}
+RestProducers = {}
+FirstConsumer = {}
+RestConsumers = {C1(5)}
+
+LockQ = {C2'(5), P4'(4), P3(5)}
+inBuffer = 4
+FirstProducer = {P1(5), P2(5)}
+RestProducers = {}
+FirstConsumer = {C3(5)}
+RestConsumers = {C1(5)}
+
+LockQ = {P4'(4), P3(5)}
+inBuffer = 4 -/> C2'(5)
+FirstProducer = {P1(5), P2(5)}
+RestProducers = {}
+FirstConsumer = {C3(5)}
+RestConsumers = {C1(5)}
+
+LockQ = {P4'(4)}
+inBuffer = 4 -/> P3(5) - hasWaiters
+FirstProducer = {P1(5), P2(5)}
+RestProducers = {}
+FirstConsumer = {C3(5), C2(5)}
+RestConsumers = {C1(5)}
+
+LockQ = {}
+inBuffer = 8 -> P4'(4) - signals FirstConsumer
+FirstProducer = {P1(5), P2(5)}
+RestProducers = {P3(5)}
+FirstConsumer = {C3(5), C2(5)}
+RestConsumers = {C1(5)}
+
+LockQ = {P4(4), C2(5)}
+inBuffer = 8
+FirstProducer = {P1(5), P2(5)}
+RestProducers = {P3(5)}
+FirstConsumer = {C3(5)}
+RestConsumers = {C1(5)}
+
+LockQ = {P4(4), C2(5)}
+inBuffer = 3 -> C2(5) - signals FirstProducer
+FirstProducer = {P1(5), P2(5)}
+RestProducers = {P3(5)}
+FirstConsumer = {C3(5)}
+RestConsumers = {C1(5)}
+
+LockQ = {P4(4)}
+inBuffer = 3 -> C2(5) - signals FirstProducer
+FirstProducer = {P1(5), P2(5)}
+RestProducers = {P3(5)}
+FirstConsumer = {C3(5)}
+RestConsumers = {C1(5)}
+
+LockQ = {P4(4), C2(5), P2(5)}
+inBuffer = 3
+FirstProducer = {P1(5)}
+RestProducers = {P3(5)}
+FirstConsumer = {C3(5)}
+RestConsumers = {C1(5)}
+
+LockQ = {P4(4), C2(5)}
+inBuffer = 3 -/> P2(5) - hasWaiters
+FirstProducer = {P1(5)}
+RestProducers = {P3(5)}
+FirstConsumer = {C3(5)}
+RestConsumers = {C1(5)}
+
+LockQ = {P4(4)}
+inBuffer = 3 -/> C2(5) - hasWaiters
+FirstProducer = {P1(5)}
+RestProducers = {P3(5), P2(5)}
+FirstConsumer = {C3(5)}
+RestConsumers = {C1(5)}
+
+LockQ = {}
+inBuffer = 3 -/> P4(4) - hasWaiters
+FirstProducer = {P1(5)}
+RestProducers = {P3(5), P2(5)}
+FirstConsumer = {C3(5)}
+RestConsumers = {C1(5), C2(5)}
+
+LockQ = {}
+inBuffer = 3
+FirstProducer = {P1(5)}
+RestProducers = {P3(5), P2(5), P4(4)}
+FirstConsumer = {C3(5)}
+RestConsumers = {C1(5), C2(5)}
+
+# Deadlock
