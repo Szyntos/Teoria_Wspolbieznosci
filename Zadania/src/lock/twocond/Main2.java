@@ -1,5 +1,10 @@
 package lock.twocond;
 
+import lock.Consumer;
+import lock.Producer;
+import lock.RNG;
+import lock.RNGType;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,26 +14,27 @@ import java.util.List;
 import static java.lang.Thread.sleep;
 
 public class Main2 {
-    public static int n = 10;
+    public static int threadCount = 10;
     public static int m = 0;
-    public static Buffer buffer = new Buffer(200);
-    public static Thread[] consumerThreads = new Thread[n];
-    public static Thread[] producerThreads = new Thread[n];
-    public static Consumer[] consumers = new Consumer[n];
-    public static Producer[] producers = new Producer[n];
+    public static RNG seedRNG = new RNG(RNGType.RANDOMRANDOM, 0);
+    public static TwoCondBuffer buffer = new TwoCondBuffer(200);
+    public static Thread[] consumerThreads = new Thread[threadCount];
+    public static Thread[] producerThreads = new Thread[threadCount];
+    public static Consumer[] consumers = new Consumer[threadCount];
+    public static Producer[] producers = new Producer[threadCount];
     public static void main(String[] args) throws InterruptedException {
 
-        for (int i = 1; i < n; i++) {
-            consumers[i] = new Consumer(i, m, buffer);
-            producers[i] = new Producer(i, m, buffer);
+        for (int i = 1; i < threadCount; i++) {
+            consumers[i] = new Consumer(i, m, buffer, seedRNG.randomInt(0, 10000));
+            producers[i] = new Producer(i, m, buffer, seedRNG.randomInt(0, 10000));
             consumerThreads[i] = new Thread(consumers[i]);
             producerThreads[i] = new Thread(producers[i]);
         }
-        consumers[0] = new Consumer(0, m, buffer);
-        producers[0] = new Producer(0, m, buffer);
+        consumers[0] = new Consumer(0, m, buffer, seedRNG.randomInt(0, 10000));
+        producers[0] = new Producer(0, m, buffer, seedRNG.randomInt(0, 10000));
         consumerThreads[0] = new Thread(consumers[0]);
         producerThreads[0] = new Thread(producers[0]);
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < threadCount; i++) {
             consumerThreads[i].start();
             producerThreads[i].start();
         }
@@ -47,24 +53,29 @@ public class Main2 {
 //            Thread.sleep(1000);
 //
 //        }
-        sleep(30000);
+        sleep(3000);
+        for (int i = 0; i < threadCount; i++) {
+            consumerThreads[i].interrupt();
+            producerThreads[i].interrupt();
+        }
 //            sleep(30000);
         try{
-            printAverageTimes(buffer.capacity/2, n);
-            printWaitingLoops(buffer.capacity/2, n);
+            printAverageTimes(buffer.getCapacity()/2-1, threadCount);
+            printWaitingLoops(buffer.getCapacity()/2-1, threadCount);
         } catch (Exception e){
-            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+//            System.out.println(e.getMessage());
         }
 
-        try {
-            for (int i = 0; i < n; i++) {
-                consumerThreads[i].join();
-                producerThreads[i].join();
-            }
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-        System.out.println("Left In Buffer: " + buffer.inBuffer);
+//        try {
+//            for (int i = 0; i < n; i++) {
+//                consumerThreads[i].join();
+//                producerThreads[i].join();
+//            }
+//        } catch (InterruptedException e) {
+//            Thread.currentThread().interrupt();
+//        }
+        System.out.println("Left In Buffer: " + buffer.getInBuffer());
     }
     public static void printAverageTimes(int bufferSize, int threadsNumber) throws IOException {
         System.out.println("******");
@@ -74,6 +85,7 @@ public class Main2 {
             getTimes.add(new ArrayList<>());
             putTimes.add(new ArrayList<>());
         }
+
         for (int i = 0; i < threadsNumber; i++){
             for (int j = 0; j <= bufferSize; j++){
                 getTimes.get(j).addAll(consumers[i].timesList.get(j));

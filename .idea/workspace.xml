@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ade6d48c-34e2-4bd8-8c61-b16421ec654a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Zadania/executions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/executions.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/TW_SzymonNowak-Trzos_Zadanie_1.rar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcond/Buffer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcond/BufferOverflowException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcond/BufferUnderflowException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcond/Consumer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcond/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcond/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcond/Main2.class" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcond/Main2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcond/Producer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcond/fourCondBuffer.class" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcond/fourCondBuffer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcond/fourcond_NOstarvation.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcondhaswaiters/Buffer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcondhaswaiters/Consumer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcondhaswaiters/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcondhaswaiters/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcondhaswaiters/Main2.class" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcondhaswaiters/Main2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcondhaswaiters/Main2_deadlock.class" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcondhaswaiters/Main2_deadlock.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcondhaswaiters/Producer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcondhaswaiters/fourCondBuffer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcondhaswaiters/fourcondhaswaiters_deadlock.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcondhaswaiters/fourcondhaswaiters_deadlock_example.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcondhaswaiters/fourcondhaswaiters_starvation.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcondhaswaiters/fourcondhaswaiters_starvation_example.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcondhaswaiters_deadlock.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcondhaswaiters_deadlock_example_fix.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcondhaswaiters_starvation.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/fourcondhaswaiters_starvation_example.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/pytania.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/threelocks/Consumer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/threelocks/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/threelocks/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/threelocks/Main2.class" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/threelocks/Main2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/threelocks/Producer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/threelocks/ThreeLockBuffer.class" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/threelocks/ThreeLockBuffer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/twocond/Buffer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/twocond/Consumer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/twocond/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/twocond/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/twocond/Main2.class" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/twocond/Main2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/twocond/Producer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/twocond/twocond_starvation.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/twocond/twocond_starvation_example.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/twocond_starvation.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/out/production/Zadania/lock/twocond_starvation_example.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/Consumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/src/lock/Consumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/LockBuffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/src/lock/LockBuffer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/Producer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/src/lock/Producer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/fourcond/Buffer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/fourcond/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/src/lock/fourcond/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/fourcond/Main2.java" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/src/lock/fourcond/Main2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/fourcond/fourCondBuffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/src/lock/fourcond/fourCondBuffer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/fourcond/fourcond_NOstarvation.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/fourcondhaswaiters/Buffer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/fourcondhaswaiters/Consumer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/fourcondhaswaiters/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/src/lock/fourcondhaswaiters/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/fourcondhaswaiters/Main2.java" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/src/lock/fourcondhaswaiters/Main2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/fourcondhaswaiters/Main2_deadlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/src/lock/fourcondhaswaiters/Main2_deadlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/fourcondhaswaiters/Producer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/fourcondhaswaiters/fourCondBuffer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/fourcondhaswaiters/fourcondhaswaiters_deadlock.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/fourcondhaswaiters/fourcondhaswaiters_deadlock_example.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/fourcondhaswaiters/fourcondhaswaiters_starvation.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/fourcondhaswaiters/fourcondhaswaiters_starvation_example.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/threelocks/Consumer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/threelocks/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/src/lock/threelocks/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/threelocks/Main2.java" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/src/lock/threelocks/Main2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/threelocks/Producer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/threelocks/ThreeLockBuffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/src/lock/threelocks/ThreeLockBuffer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/twocond/Buffer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/twocond/Consumer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/twocond/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/src/lock/twocond/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/twocond/Main2.java" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/src/lock/twocond/Main2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/twocond/Producer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/twocond/twocond_starvation.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/src/lock/twocond/twocond_starvation_example.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zadania/times2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Zadania/times2.csv" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectId" id="2YuEGBWK21pUM53ZhgQv2xQDlIU" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ade6d48c-34e2-4bd8-8c61-b16421ec654a" name="Changes" comment="" />
+      <created>1701366971593</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1701366971593</updated>
+      <workItem from="1701366973388" duration="10000" />
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

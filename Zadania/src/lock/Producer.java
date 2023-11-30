@@ -1,37 +1,37 @@
 package lock;
 
-import lock.RNG;
-import lock.fourcond.fourCondBuffer;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Producer implements Runnable{
-    private final LockBuffer buffer;
-    int ID;
+    public LockBuffer buffer;
+    public int ID;
     public int inLoop = 0;
-    int toMake;
+    public int toMake;
     public int made = 0;
     public List<List<Long>> timesList;
-    RNG rng = new RNG(0, 1);
+    RNG rng = new RNG(RNGType.RANDOMRANDOM, 1);
 
-    Producer(int ID, int toMake, LockBuffer buffer){
+    public Producer(int ID, int toMake, LockBuffer buffer, long seed){
         this.ID = ID;
         this.buffer = buffer;
         this.toMake = toMake;
+        rng.setSeed(seed);
         timesList = new ArrayList<>();
-        for (int i = 0; i <= buffer.capacity/2; i++){
+        for (int i = 0; i <= buffer.getCapacity()/2; i++){
             timesList.add(new ArrayList<>());
         }
+    }
+    public void setRngType(RNGType type){
+        rng.type = type;
     }
     @Override
     public void run(){
         int val;
-        for (int i = 0; i < 100; ) {
+        while (!Thread.currentThread().isInterrupted()) {
             try{
                 if (this.toMake == 0){
-                    val = rng.randomInt(1, buffer.capacity/2);
+                    val = rng.randomInt(1, buffer.getCapacity()/2);
                     long start = System.nanoTime();
                     buffer.put(this, val);
                     long elapsed = System.nanoTime() - start;

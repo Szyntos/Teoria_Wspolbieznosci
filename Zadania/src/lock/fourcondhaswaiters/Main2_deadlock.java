@@ -1,5 +1,10 @@
 package lock.fourcondhaswaiters;
 
+import lock.Consumer;
+import lock.Producer;
+import lock.RNG;
+import lock.RNGType;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,7 +16,8 @@ import static java.lang.Thread.sleep;
 public class Main2_deadlock {
     public static int n = 5;
     public static int m = 0;
-    public static fourCondBuffer buffer = new fourCondBuffer(200);
+    public static RNG seedRNG = new RNG(RNGType.RANDOMRANDOM, 0);
+    public static FourCondBufferHasWaiters buffer = new FourCondBufferHasWaiters(200);
     public static Thread[] consumerThreads = new Thread[n];
     public static Thread[] producerThreads = new Thread[n];
     public static Consumer[] consumers = new Consumer[n];
@@ -19,21 +25,21 @@ public class Main2_deadlock {
     public static void main(String[] args) throws InterruptedException {
 
         for (int i = 3; i < n; i++) {
-            consumers[i] = new Consumer(i, m, buffer);
-            producers[i] = new Producer(i, m, buffer);
+            consumers[i] = new Consumer(i, m, buffer, seedRNG.randomInt(0, 10000));
+            producers[i] = new Producer(i, m, buffer, seedRNG.randomInt(0, 10000));
             consumerThreads[i] = new Thread(consumers[i]);
             producerThreads[i] = new Thread(producers[i]);
         }
-        consumers[0] = new Consumer(555, 1, buffer);
-        producers[0] = new Producer(555, 100, buffer);
+        consumers[0] = new Consumer(555, 1, buffer, seedRNG.randomInt(0, 10000));
+        producers[0] = new Producer(555, 100, buffer, seedRNG.randomInt(0, 10000));
         consumerThreads[0] = new Thread(consumers[0]);
         producerThreads[0] = new Thread(producers[0]);
-        consumers[1] = new Consumer(666, 1, buffer);
-        producers[1] = new Producer(666, 100, buffer);
+        consumers[1] = new Consumer(666, 1, buffer, seedRNG.randomInt(0, 10000));
+        producers[1] = new Producer(666, 100, buffer, seedRNG.randomInt(0, 10000));
         consumerThreads[1] = new Thread(consumers[1]);
         producerThreads[1] = new Thread(producers[1]);
-        consumers[2] = new Consumer(777, 1, buffer);
-        producers[2] = new Producer(777, 100, buffer);
+        consumers[2] = new Consumer(777, 1, buffer, seedRNG.randomInt(0, 10000));
+        producers[2] = new Producer(777, 100, buffer, seedRNG.randomInt(0, 10000));
         consumerThreads[2] = new Thread(consumers[2]);
         producerThreads[2] = new Thread(producers[2]);
         for (int i = 0; i < n; i++) {
@@ -58,8 +64,8 @@ public class Main2_deadlock {
         sleep(30000);
 //            sleep(30000);
         try{
-            printAverageTimes(buffer.capacity/2, n);
-            printWaitingLoops(buffer.capacity/2, n);
+            printAverageTimes(buffer.getCapacity()/2, n);
+            printWaitingLoops(buffer.getCapacity()/2, n);
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -72,7 +78,7 @@ public class Main2_deadlock {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
-        System.out.println("Left In Buffer: " + buffer.inBuffer);
+        System.out.println("Left In Buffer: " + buffer.getInBuffer());
     }
     public static void printAverageTimes(int bufferSize, int threadsNumber) throws IOException {
         System.out.println("******");

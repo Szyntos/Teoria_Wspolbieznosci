@@ -1,16 +1,23 @@
 package lock.threelocks;
 
+import lock.Consumer;
+import lock.Producer;
+import lock.RNG;
+import lock.RNGType;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import static java.lang.Thread.sleep;
 
 public class Main2 {
     public static int n = 10;
     public static int m = 0;
+    public static RNG seedRNG = new RNG(RNGType.RANDOMRANDOM, 0);
     public static ThreeLockBuffer buffer = new ThreeLockBuffer(200);
     public static Thread[] consumerThreads = new Thread[n];
     public static Thread[] producerThreads = new Thread[n];
@@ -18,14 +25,14 @@ public class Main2 {
     public static Producer[] producers = new Producer[n];
     public static void main(String[] args) throws InterruptedException {
         for (int i = 1; i < n; i++) {
-            consumers[i] = new Consumer(i, m, buffer);
-            producers[i] = new Producer(i, m, buffer);
+            consumers[i] = new Consumer(i, m, buffer, seedRNG.randomInt(0, 10000));
+            producers[i] = new Producer(i, m, buffer, seedRNG.randomInt(0, 10000));
             consumerThreads[i] = new Thread(consumers[i]);
             producerThreads[i] = new Thread(producers[i]);
         }
 //        Producer differentProducer = new Producer(555, 100, buffer);
-        consumers[0] = new Consumer(0, m, buffer);
-        producers[0] = new Producer(0, m, buffer);
+        consumers[0] = new Consumer(0, m, buffer, seedRNG.randomInt(0, 10000));
+        producers[0] = new Producer(0, m, buffer, seedRNG.randomInt(0, 10000));
         consumerThreads[0] = new Thread(consumers[0]);
         producerThreads[0] = new Thread(producers[0]);
         for (int i = 0; i < n; i++) {
@@ -51,8 +58,8 @@ public class Main2 {
         sleep(30000);
 //            sleep(30000);
         try{
-            printAverageTimes(buffer.capacity/2, n);
-            printWaitingLoops(buffer.capacity/2, n);
+            printAverageTimes(buffer.getCapacity()/2, n);
+            printWaitingLoops(buffer.getCapacity()/2, n);
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -66,7 +73,7 @@ public class Main2 {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
-        System.out.println("Left In Buffer: " + buffer.inBuffer);
+        System.out.println("Left In Buffer: " + buffer.getInBuffer());
     }
 
     public static void printAverageTimes(int bufferSize, int threadsNumber) throws IOException {

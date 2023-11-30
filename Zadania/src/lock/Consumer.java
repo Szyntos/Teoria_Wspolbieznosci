@@ -1,37 +1,37 @@
 package lock;
 
-import lock.RNG;
-import lock.fourcond.fourCondBuffer;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Consumer implements Runnable{
-    private final fourCondBuffer buffer;
-    int ID;
+    public LockBuffer buffer;
+    public int ID;
     public int inLoop = 0;
-    int toTake;
+    public int toTake;
     public int taken = 0;
     public List<List<Long>> timesList;
-    RNG rng = new RNG(0, 0);
+    RNG rng = new RNG(RNGType.RANDOMRANDOM, 0);
 
-    Consumer(int ID, int toTake, fourCondBuffer buffer){
+    public Consumer(int ID, int toTake, LockBuffer buffer, long seed){
         this.ID = ID;
         this.buffer = buffer;
         this.toTake = toTake;
+        rng.setSeed(seed);
         timesList = new ArrayList<>();
-        for (int i = 0; i <= buffer.capacity/2; i++){
+        for (int i = 0; i <= buffer.getCapacity()/2; i++){
             timesList.add(new ArrayList<>());
         }
+    }
+    public void setRngType(RNGType type){
+        rng.type = type;
     }
     @Override
     public void run(){
         int val;
-        for (int i = 0; i < 100; ) {
+        while (!Thread.currentThread().isInterrupted()) {
             try{
                 if (this.toTake == 0){
-                    val = rng.randomInt(1, buffer.capacity/2);
+                    val = rng.randomInt(1, buffer.getCapacity()/2);
                     long start = System.nanoTime();
                     buffer.take(this, val);
                     long elapsed = System.nanoTime() - start;
@@ -39,6 +39,7 @@ public class Consumer implements Runnable{
                 }else{
                     buffer.take(this, this.toTake);
                 }
+//                Thread.sleep(1);
 
             }catch (Exception e){
                 throw new RuntimeException(e);

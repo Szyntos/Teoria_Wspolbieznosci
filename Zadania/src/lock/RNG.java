@@ -1,25 +1,31 @@
 package lock;
 
 import java.util.Random;
-
+import java.security.SecureRandom;
 public class RNG {
-    int type = 0;
+    RNGType type = RNGType.RANDOMRANDOM;
     long seed = 0;
-    Random random = new Random();
-    public RNG(int type, long seed){
+    Random randomRandom = new Random();
+    SecureRandom secureRandom = new SecureRandom();
+    public RNG(RNGType type, long seed){
         this.type = type;
         this.seed = seed;
-        random.setSeed(seed);
+        randomRandom.setSeed(seed);
+        secureRandom.setSeed(seed);
     }
     public int randomInt(int a, int b){
-        if (type == 0){
-            return random.nextInt(b - a + 1) + a;
-        }else{
-            return -1;
+        switch (type){
+            case RANDOMRANDOM -> {
+                return randomRandom.nextInt(b - a + 1) + a;
+            }
+            case SECURERANDOM -> {
+                return secureRandom.nextInt(b - a + 1) + a;
+            }
+            default -> {return a;}
         }
     }
     public void setSeed(long seed){
-        random.setSeed(seed);
+        randomRandom.setSeed(seed);
 
     }
 }

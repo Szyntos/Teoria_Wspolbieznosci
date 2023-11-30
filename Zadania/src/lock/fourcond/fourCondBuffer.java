@@ -1,14 +1,11 @@
 package lock.fourcond;
 
-import lock.BufferOverflowException;
-import lock.BufferUnderflowException;
-import lock.Consumer;
-import lock.Producer;
+import lock.*;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class fourCondBuffer {
+public class FourCondBuffer implements LockBuffer {
     public int inBuffer = 0;
     public final int capacity;
     ReentrantLock lock = new ReentrantLock();
@@ -24,7 +21,6 @@ public class fourCondBuffer {
     public void put(Producer producer, int count) throws BufferOverflowException {
         lock.lock();
         try{
-            Thread.sleep(1);
             while (hasFirstProducer){
                 restProducers.await();
             }
@@ -45,7 +41,7 @@ public class fourCondBuffer {
             firstConsumer.signal();
 
         }catch(InterruptedException e){
-            throw new RuntimeException(e);
+            Thread.currentThread().interrupt();
         }
         finally {
             lock.unlock();
@@ -57,7 +53,7 @@ public class fourCondBuffer {
         lock.lock();
 
         try{
-            Thread.sleep(1);
+
             while (hasFirstConsumer){
                 restConsumers.await();
             }
@@ -78,15 +74,21 @@ public class fourCondBuffer {
             restConsumers.signal();
             firstProducer.signal();
 
-        }catch(InterruptedException e){
-            throw new RuntimeException(e);
-        }finally {
+        } catch(InterruptedException e){
+            Thread.currentThread().interrupt();
+        } finally {
             lock.unlock();
         }
     }
 
-    fourCondBuffer(int capacity){
+    public FourCondBuffer(int capacity){
         this.capacity = capacity;
 
+    }
+    public int getInBuffer(){
+        return inBuffer;
+    }
+    public int getCapacity(){
+        return capacity;
     }
 }

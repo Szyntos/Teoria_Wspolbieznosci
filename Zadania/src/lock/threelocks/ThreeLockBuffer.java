@@ -1,12 +1,11 @@
 package lock.threelocks;
 
-import monitors.one.BufferOverflowException;
-import monitors.one.BufferUnderflowException;
+import lock.*;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ThreeLockBuffer {
+public class ThreeLockBuffer implements LockBuffer {
     public int inBuffer = 0;
     public final int capacity;
     ReentrantLock commonLock = new ReentrantLock();
@@ -14,20 +13,22 @@ public class ThreeLockBuffer {
     ReentrantLock consumerLock = new ReentrantLock();
     Condition waiting = commonLock.newCondition();
 
-    ThreeLockBuffer(int capacity){
+    public ThreeLockBuffer(int capacity){
         this.capacity = capacity;
     }
-    public void put(Producer producer, int count) throws BufferOverflowException{
+    public int getInBuffer(){
+        return inBuffer;
+    }
+    public int getCapacity(){
+        return capacity;
+    }
+    public void put(Producer producer, int count) throws BufferOverflowException {
         producerLock.lock();
         commonLock.lock();
         try {
             while (inBuffer + count > capacity) {
-                try {
-                    producer.inLoop++;
-                    waiting.await();
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
+                producer.inLoop++;
+                waiting.await();
             }
             if (inBuffer + count <= capacity){
                 inBuffer += count;
@@ -39,23 +40,21 @@ public class ThreeLockBuffer {
 //            Thread.sleep(1);
 //            System.out.println("Prod:\t" + producer.ID + " In Loop:\t" +producer.inLoop +" Put: \t" +count + " In Buffer:\t" + inBuffer);
             waiting.signal();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
         } finally {
             commonLock.unlock();
             producerLock.unlock();
         }
     }
-    public void take(Consumer consumer, int count) throws BufferUnderflowException{
+    public void take(Consumer consumer, int count) throws BufferUnderflowException {
         consumerLock.lock();
         commonLock.lock();
         try {
 
             while (inBuffer - count < 0){
-                try {
-                    consumer.inLoop++;
-                    waiting.await();
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
+                consumer.inLoop++;
+                waiting.await();
             }
 
             if (inBuffer - count >= 0){
@@ -69,6 +68,8 @@ public class ThreeLockBuffer {
             consumer.taken += 1;
 //            System.out.println("Con: \t" + consumer.ID + " In Loop:\t" +consumer.inLoop +" Put: \t" + count + " In Buffer:\t" + inBuffer);
             waiting.signal();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
         } finally {
             commonLock.unlock();
             consumerLock.unlock();
