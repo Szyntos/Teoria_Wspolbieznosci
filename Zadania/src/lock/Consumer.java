@@ -37,7 +37,11 @@ public class Consumer implements Runnable{
                     long elapsed = System.nanoTime() - start;
                     timesList.get(val).add(elapsed);
                 }else{
+                    val = rng.randomInt(1, buffer.getCapacity()/2);
+                    long start = System.nanoTime();
                     buffer.take(this, this.toTake);
+                    long elapsed = System.nanoTime() - start;
+                    timesList.get(val).add(elapsed);
                 }
 //                Thread.sleep(1);
 

@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
+import decimal
 
 def makePlots(path, plot_type):
     data = pd.read_csv(path)
@@ -24,25 +25,32 @@ def makePlots(path, plot_type):
         unique_combinations = buffer_data.groupby(['bufferType', 'rngType', 'function', 'bufferSize', 'prodConsCount'])
 
         for group, df_group in unique_combinations:
+            s = "Number of Executions of " if plot_type == "executions" else "Mean Time per Chunk of "
             plt.figure(figsize=(8, 6))  # Adjust figure size as needed
-            plt.title(f"{group}")
+            plt.title(f"{s}{group[0]} with {group[1]} - {group[2].upper()}")
 
             # Plot bar chart based on plot_type argument
             if plot_type == 'executions':
-                plt.bar(df_group['putTakeChunk'], df_group['executions'], color=('blue' if group[2] == "take" else "red"))
-                plt.ylabel('Executions')
+                plt.bar(df_group['threadID'], df_group['executions'], color=('blue' if group[2] == "take" else "red"))
+                plt.ylabel('Number of Executions')
+                plt.xlabel('Thread ID')
                 mean_value = df_group['executions'].mean()
+                plt.text(df_group['threadID'].iloc[-1], mean_value, f'Mean: {mean_value:.3E}', va='center',
+                         ha='right', backgroundcolor='white')
+
             else:
-                plt.bar(df_group['putTakeChunk'], df_group['meanTime'], color=('blue' if group[2] == "take" else "red"))
-                plt.ylabel('Mean Time')
-                mean_value = df_group['meanTime'].mean()
+                plt.bar(df_group['putTakeChunk'], df_group['meanTime'] / 1000, color=('blue' if group[2] == "take" else "red"))
+                plt.ylabel('Mean Time per Chunk [ms]')
+                plt.xlabel('Processed Chunk')
+                mean_value = df_group['meanTime'].mean() / 1000
+                plt.text(df_group['putTakeChunk'].iloc[-1], mean_value, f'Mean: {mean_value:.3E} [ms]', va='center',
+                         ha='right', backgroundcolor='white')
 
             # Calculate mean and plot mean line
 
-            plt.axhline(mean_value, color='green', linestyle='--', label=f'Mean: {mean_value:.2f}')
-            plt.text(df_group['putTakeChunk'].iloc[-1], mean_value, f'Mean: {mean_value:.2f}', va='center', ha='right', backgroundcolor='white')
+            plt.axhline(mean_value, color='green', linestyle='--', label=f'Mean')
 
-            plt.xlabel('putTakeChunk')
+
             plt.grid(True)
             plt.legend(loc='lower left')
 

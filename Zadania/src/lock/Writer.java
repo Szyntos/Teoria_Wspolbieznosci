@@ -12,7 +12,7 @@ public class Writer {
         writer.write("bufferType,rngType,function,bufferSize,prodConsCount,putTakeChunk,meanTime\n");
         writer.close();
         BufferedWriter writer2 = new BufferedWriter(new FileWriter("executions.csv", false));
-        writer2.write("bufferType,rngType,function,bufferSize,prodConsCount,putTakeChunk,executions\n");
+        writer2.write("bufferType,rngType,function,bufferSize,prodConsCount,threadID,executions\n");
         writer2.close();
     }
     public static void printAverageTimes(Producer[] producers, Consumer[] consumers, BufferType bufferType,
@@ -56,14 +56,14 @@ public class Writer {
         BufferedWriter writer = new BufferedWriter(new FileWriter("times.csv", true));
         for (int i = 1; i < bufferSize; i++){
             writer.write(bufferType + "," + rngType + "," + "take" + "," + bufferSize +
-                            ","  + threadsNumber + ","  + i + ","  + takeMeans.get(i)+"\n");
+                            ","  + threadsNumber + ","  + (i+1) + ","  + takeMeans.get(i)+"\n");
 
 //            System.out.println("taketwocond,"+bufferSize+","+threadsNumber+","+i+","+takeMeans.get(i));
         }
 
         for (int i = 1; i < bufferSize; i++){
             writer.write(bufferType + "," + rngType + "," + "put" + "," + bufferSize +
-                    ","  + threadsNumber + ","  + i + ","  + putMeans.get(i)+"\n");
+                    ","  + threadsNumber + ","  + (i+1) + ","  + putMeans.get(i)+"\n");
 //            writer.write("puttwocond,"+bufferSize+","+threadsNumber+","+i+","+putMeans.get(i)+"\n");
 //            System.out.println("puttwocond,"+bufferSize+","+threadsNumber+","+i+","+putMeans.get(i));
         }
@@ -80,7 +80,7 @@ public class Writer {
         for (int i = 0; i < threadsNumber; i++){
             if (producers[i] != null){
                 writer.write(bufferType + "," + rngType + "," + "put" + "," + bufferSize +
-                        ","  + threadsNumber + ","  + i + ","  + producers[i].made+"\n");
+                        ","  + threadsNumber + ","  + (i) + ","  + producers[i].made+"\n");
 //                System.out.println("Producer id: " + i + " number of executions: " + producers[i].made);
 //                writer.write("producertwocond,"+bufferSize+","+threadsNumber+","+i+","+producers[i].made+"\n");
             }
@@ -89,7 +89,7 @@ public class Writer {
         for (int i = 0; i < threadsNumber; i++){
             if (consumers[i] != null) {
                 writer.write(bufferType + "," + rngType + "," + "take" + "," + bufferSize +
-                        ","  + threadsNumber + ","  + i + ","  + consumers[i].taken+"\n");
+                        ","  + threadsNumber + ","  + (i) + ","  + consumers[i].taken+"\n");
 //                System.out.println("Consumer id: " + i + " number of executions: " + consumers[i].taken);
 //                writer.write("consumertwocond,"+bufferSize+","+threadsNumber+","+i+","+consumers[i].taken+"\n");
             }

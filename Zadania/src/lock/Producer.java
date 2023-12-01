@@ -37,7 +37,11 @@ public class Producer implements Runnable{
                     long elapsed = System.nanoTime() - start;
                     timesList.get(val).add(elapsed);
                 }else{
+                    val = rng.randomInt(1, buffer.getCapacity()/2);
+                    long start = System.nanoTime();
                     buffer.put(this, this.toMake);
+                    long elapsed = System.nanoTime() - start;
+                    timesList.get(val).add(elapsed);
                 }
 //                Thread.sleep(1);
             }catch (Exception e){

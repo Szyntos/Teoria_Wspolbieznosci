@@ -29,16 +29,16 @@ public class Main2 {
         createFile();
         for (BufferType bufferType : BufferType.values()) {
             for (RNGType rngType : RNGType.values()) {
-//                if (bufferType != BufferType.FOURCOND){
-//                    continue;
-//                }
+                if (bufferType == BufferType.FOURCONDHASWAITERS){
+                    continue;
+                }
                 System.out.println("Testing " + bufferType + " - " + rngType + " for " + testingTime/1000 + " [s]");
                 testBuffer(bufferType, rngType, testingTime);
                 writeResultsToFile(bufferType, rngType);
             }
 
         }
-        System.out.println("Program Ended, Thank You");
+        System.out.println("Program Has Ended, Thank You");
     }
 
     public static void testBuffer(BufferType bufferType, RNGType rngType, int time) throws InterruptedException {
