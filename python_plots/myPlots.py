@@ -35,15 +35,17 @@ def makePlots(path, plot_type):
                 plt.ylabel('Number of Executions')
                 plt.xlabel('Thread ID')
                 mean_value = df_group['executions'].mean()
+                print(group, df_group['executions'].sum())
                 plt.text(df_group['threadID'].iloc[-1], mean_value, f'Mean: {mean_value:.3E}', va='center',
                          ha='right', backgroundcolor='white')
 
             else:
-                plt.bar(df_group['putTakeChunk'], df_group['meanTime'] / 1000, color=('blue' if group[2] == "take" else "red"))
-                plt.ylabel('Mean Time per Chunk [ms]')
+                plt.bar(df_group['putTakeChunk'], df_group['meanTime'], color=('blue' if group[2] == "take" else "red"))
+                plt.ylabel('Mean Time per Chunk [ns]')
                 plt.xlabel('Processed Chunk')
-                mean_value = df_group['meanTime'].mean() / 1000
-                plt.text(df_group['putTakeChunk'].iloc[-1], mean_value, f'Mean: {mean_value:.3E} [ms]', va='center',
+                mean_value = df_group['meanTime'].mean()
+                # print(group, df_group['meanTime'].sum())
+                plt.text(df_group['putTakeChunk'].iloc[-1], mean_value, f'Mean: {mean_value:.3E} [ns]', va='center',
                          ha='right', backgroundcolor='white')
 
             # Calculate mean and plot mean line
