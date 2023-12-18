@@ -1,0 +1,51 @@
+# Initial State
+P1, P2, C1
+Q = {}
+inBuffer = 0
+
+P2, C1
+P1 - 1
+Q = {}
+inBuffer = 1
+
+
+p1, C1
+P2 - 1
+Q = {}
+inBuffer = 2
+
+p1, P2, C1
+Q = {}
+inBuffer = 2
+
+P2, C1
+p1 -/> 1
+Q = {}
+inBuffer = 2
+
+P2, C1
+P2 -/> 1
+Q = {p1}
+inBuffer = 2
+
+C1
+Q = {p1, p2}
+inBuffer = 2
+
+C1 <- 1
+Q = {p1, p2}
+inBuffer = 1
+
+c1, p1
+Q = {p2}
+inBuffer = 1
+
+
+c1
+p1 -> 1
+Q = {p2}
+inBuffer = 2
+
+C1, P1, p2
+Q = {}
+inBuffer = 2

@@ -38,43 +38,43 @@ public class Main2 {
             consumerThreads[i].start();
             producerThreads[i].start();
         }
-//        for (int i = 0; i < 30; i ++){
-//
-//            System.out.println("\n\n=======================");
-//            for (int j = 0; j < n; j++) {
-//                System.out.println("Producer - \t" + producers[j].ID +
-//                        "\t Makes - " + producers[j].toMake + "   \t - Made  - " + producers[j].made);
-//            }
-//            System.out.println();
-//            for (int j = 0; j < n; j++) {
-//                System.out.println("Consumer - \t" + consumers[j].ID +
-//                        "\t Takes - " + consumers[j].toTake + "   \t - Taken - " + consumers[j].taken);
-//            }
-//            Thread.sleep(1000);
-//
-//        }
-        sleep(3000);
-        for (int i = 0; i < threadCount; i++) {
-            consumerThreads[i].interrupt();
-            producerThreads[i].interrupt();
-        }
-//            sleep(30000);
-        try{
-            printAverageTimes(buffer.getCapacity()/2-1, threadCount);
-            printWaitingLoops(buffer.getCapacity()/2-1, threadCount);
-        } catch (Exception e){
-            throw new RuntimeException(e);
-//            System.out.println(e.getMessage());
-        }
+        for (int i = 0; i < 30; i ++){
 
-//        try {
-//            for (int i = 0; i < n; i++) {
-//                consumerThreads[i].join();
-//                producerThreads[i].join();
-//            }
-//        } catch (InterruptedException e) {
-//            Thread.currentThread().interrupt();
+            System.out.println("\n\n=======================");
+            for (int j = 0; j < threadCount; j++) {
+                System.out.println("Producer - \t" + producers[j].ID +
+                        "\t Makes - " + producers[j].toMake + "   \t - Made  - " + producers[j].made);
+            }
+            System.out.println();
+            for (int j = 0; j < threadCount; j++) {
+                System.out.println("Consumer - \t" + consumers[j].ID +
+                        "\t Takes - " + consumers[j].toTake + "   \t - Taken - " + consumers[j].taken);
+            }
+            Thread.sleep(1000);
+
+        }
+//        sleep(3000);
+//        for (int i = 0; i < threadCount; i++) {
+//            consumerThreads[i].interrupt();
+//            producerThreads[i].interrupt();
 //        }
+//            sleep(30000);
+//        try{
+//            printAverageTimes(buffer.getCapacity()/2-1, threadCount);
+//            printWaitingLoops(buffer.getCapacity()/2-1, threadCount);
+//        } catch (Exception e){
+//            throw new RuntimeException(e);
+////            System.out.println(e.getMessage());
+//        }
+
+        try {
+            for (int i = 0; i < threadCount; i++) {
+                consumerThreads[i].join();
+                producerThreads[i].join();
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
         System.out.println("Left In Buffer: " + buffer.getInBuffer());
     }
     public static void printAverageTimes(int bufferSize, int threadsNumber) throws IOException {
