@@ -12,10 +12,10 @@ public final class Main {
     } // main
 
     public static void PCMain2() throws InterruptedException{
-        int prodCount = 1;
-        int consCount = 7;
-        int bufferCount = 3;
-        int capacity = 4;
+        int prodCount = 5;
+        int bufferCount = 15;
+        int consCount = 5;
+        int capacity = 1;
         final One2OneChannelInt[][] bufferChannelsProd = new One2OneChannelInt[bufferCount][prodCount];
         final One2OneChannelInt[][] bufferChannelsProdReq = new One2OneChannelInt[bufferCount][prodCount];
         final One2OneChannelInt[][] bufferChannelsCons = new One2OneChannelInt[bufferCount][consCount];
@@ -84,33 +84,36 @@ public final class Main {
         par.run();
     }
     static void printStats(Producer[] producers, Consumer[] consumers, Buffer[] buffers) throws InterruptedException {
-        int sum2 = 0;
-        int sum = 0;
+        int sumMade = 0;
+        int sumTaken = 0;
+        int sumSentToCons = 0;
+        int sumTakenFromProd = 0;
         for (int i = 0; i < 30;){
             System.out.println("\n\n=======================");
-            sum = 0;
-            for (int j = 0; j < producers.length; j++) {
-                System.out.println("Producer - \t" + producers[j].ID + "   \t - Made  - " + producers[j].made);
-                sum += producers[j].made;
+            for (Producer producer : producers) {
+                System.out.println("Producer - \t" + producer.ID + "   \t - Made  - " + producer.made);
+                sumMade += producer.made;
             }
-            System.out.println("Sum = " + sum);
-            sum = 0;
             System.out.println();
-            for (int j = 0; j < consumers.length; j++) {
-                System.out.println("Consumer - \t" + consumers[j].ID + "\t - Taken - " + consumers[j].taken);
-                sum += consumers[j].taken;
+            for (Buffer buffer : buffers) {
+                System.out.println("Buffer - \t" + buffer.ID + "\t - sentToCons - " + buffer.sentToCons);
+                sumSentToCons += buffer.sentToCons;
             }
-            System.out.println("Sum = " + sum);
-            sum = 0;
-            sum2 = 0;
             System.out.println();
-            for (int j = 0; j < buffers.length; j++) {
-                System.out.println("Buffer - \t" + buffers[j].ID + "\t - sentToCons - " + buffers[j].sentToCons);
-                System.out.println("Buffer - \t" + buffers[j].ID + "\t - takenFromProd - " + buffers[j].takenFromProd);
-                sum += buffers[j].sentToCons;
-                sum2 += buffers[j].takenFromProd;
+            for (Buffer buffer : buffers) {
+                System.out.println("Buffer - \t" + buffer.ID + "\t - takenFromProd - " + buffer.takenFromProd);
+                sumTakenFromProd += buffer.takenFromProd;
             }
-            System.out.println("Sum_taken = " + sum2 + ", Sum_sent = " + sum);
+            System.out.println();
+            for (Consumer consumer : consumers) {
+                System.out.println("Consumer - \t" + consumer.ID + "\t - Taken - " + consumer.taken);
+                sumTaken += consumer.taken;
+            }
+            System.out.println();
+
+            System.out.println("Sum_made = " + sumMade);
+            System.out.println("Sum_taken = " + sumTaken);
+            System.out.println("Sum_takenFromProd = " + sumTakenFromProd + ", Sum_sentToCons = " + sumSentToCons);
             Thread.sleep(1000);
 
         }
