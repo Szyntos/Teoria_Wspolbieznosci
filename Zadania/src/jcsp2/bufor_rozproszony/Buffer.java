@@ -9,9 +9,9 @@ import java.util.Random;
 
 public class Buffer implements CSProcess {
     private final One2OneChannelInt[] reqToProd;
-//    private final One2OneChannelInt[] channelFromProd;
+    private final One2OneChannelInt[] channelFromProd;
     private final One2OneChannelInt[] reqFromCons;
-//    private final One2OneChannelInt[] channelToCons;
+    private final One2OneChannelInt[] channelToCons;
     int ID;
     int capacity;
     int inBuffer = 0;
@@ -26,9 +26,9 @@ public class Buffer implements CSProcess {
         rng.setSeed(this.ID);
         this.capacity = capacity;
         this.reqToProd = reqToProd;
-//        this.channelFromProd = channelFromProd;
+        this.channelFromProd = channelFromProd;
         this.reqFromCons = reqFromCons;
-//        this.channelToCons = channelToCons;
+        this.channelToCons = channelToCons;
     }
 
     public void run() {
@@ -57,7 +57,7 @@ public class Buffer implements CSProcess {
             }
             if (prodSelected){
                 reqToProd[index].out().write(1);
-                item = reqToProd[index].in().read();
+                item = channelFromProd[index].in().read();
                 inBuffer += 1;
                 this.takenFromProd += 1;
 //                System.out.println("Buffer " + ID + " taken item: " + item + " from Producer " +
@@ -65,7 +65,7 @@ public class Buffer implements CSProcess {
 
             }else{
                 item = reqFromCons[index].in().read();
-                reqFromCons[index].out().write(1);
+                channelToCons[index].out().write(1);
                 inBuffer -= 1;
                 this.sentToCons += 1;
 //                System.out.println("Buffer " + ID + " sent item: " + item + " to Consumer " +

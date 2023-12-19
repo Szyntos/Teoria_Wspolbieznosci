@@ -7,14 +7,14 @@ import org.jcsp.lang.One2OneChannelInt;
 
 
 public class Producer implements CSProcess {
-//    private final One2OneChannelInt[] bufferChannels;
+    private final One2OneChannelInt[] bufferChannels;
     private final One2OneChannelInt[] reqFromBuffers;
     int ID;
     long made = 0;
 
     public Producer(int ID, final One2OneChannelInt[] bufferChannels, final One2OneChannelInt[] reqFromBuffers) {
         this.ID = ID;
-//        this.bufferChannels = bufferChannels;
+        this.bufferChannels = bufferChannels;
         this.reqFromBuffers = reqFromBuffers;
     } // constructor
 
@@ -31,7 +31,7 @@ public class Producer implements CSProcess {
             reqFromBuffers[index].in().read();
 //            item = (int) (Math.random() * 100) + 1;
             item = ID;
-            reqFromBuffers[index].out().write(item);
+            bufferChannels[index].out().write(item);
             this.made += 1;
 //            System.out.println("Producer " + ID + " sent item: " + item + " to Buffer " + index);
 
